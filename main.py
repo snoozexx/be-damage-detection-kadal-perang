@@ -1,7 +1,7 @@
 from typing import Any, Dict
 import os
 import json
-from datetime import datetime
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.sql import select
 try:
     from dotenv import load_dotenv
@@ -78,7 +78,7 @@ def _compute_status(
 @app.on_event("startup")
 async def startup():
     await database.connect()
-    run_migrations()
+    # run_migrations()
 
 @app.on_event("shutdown")
 async def shutdown():
@@ -113,6 +113,30 @@ async def ingest_telemetry(payload: TelemetryIn):
         record["ai_advice"] = ai_result
     else:
         record["ai_advice"] = None
+        
+    db_data = {
+        "vehicle_id": payload.vehicle_id,
+        "timestamp": payload.timestamp.replace(tzinfo=None),
+        "rpm": 0,
+        "temp": 0,
+        "dtc_code": None,
+        "tps_percent": None,
+        "batt_volt": None,
+        "fuel_trim_short": None,
+        "o2_volt": None,
+        "map_kpa": None,
+        "vehicle_model": None,
+        "status": statuses,
+        "ai_advice": None,
+    }
+
+    stmt = insert(TelemetryRecord).values(**db_data)
+    stmt = stmt.on_conflict_do_nothing(
+        index_elements=["vehicle_id"]
+    )
+
+    await database.execute(stmt)
+
 
     vehicle_store[payload.vehicle_id] = record
 
@@ -191,11 +215,25 @@ async def ingest_telemetry_db(payload: TelemetryIn):
         "map_kpa": payload.map_kpa,
         "vehicle_model": payload.vehicle_model,
         "status": statuses,
-        "ai_advice": ai_advice_dict,    
+        "ai_advice": ai_advice_dict,
     }
 
-    query = TelemetryRecord.__table__.insert()
-    await database.execute(query, db_data)
+    existing = await database.fetch_one(
+        select(TelemetryRecord).where(TelemetryRecord.vehicle_id == payload.vehicle_id)
+    )
+
+    if existing:
+        query = (
+            TelemetryRecord
+            .__table__
+            .update()
+            .where(TelemetryRecord.vehicle_id == payload.vehicle_id)
+            .values(**db_data)
+        )
+    else:
+        query = TelemetryRecord.__table__.insert().values(**db_data)
+
+    await database.execute(query)
 
     vehicle_store[payload.vehicle_id] = record
     encoded = jsonable_encoder(record)
@@ -210,6 +248,7 @@ async def ingest_telemetry_db(payload: TelemetryIn):
         for ws in dead_ws:
             ws_by_vehicle[payload.vehicle_id].remove(ws)
 
+    # Send to global websocket
     dead_ws = []
     for ws in ws_global:
         try:
@@ -220,6 +259,7 @@ async def ingest_telemetry_db(payload: TelemetryIn):
         ws_global.remove(ws)
 
     return encoded
+
 
 @app.get("/api/status/{vehicle_id}", response_model=TelemetryOut, tags=["Telemetry"])
 async def get_status(vehicle_id: str):
