@@ -22,7 +22,7 @@ class TelemetryRecord(Base):
     __tablename__ = "telemetry"
 
     id = Column(Integer, primary_key=True, index=True)
-    vehicle_id = Column(String, index=True, nullable=False)
+    vehicle_id = Column(String, unique=True, index=True, nullable=False)
     timestamp = Column(DateTime, default=datetime.now(timezone.utc), nullable=False)
 
     rpm = Column(Integer, nullable=False)

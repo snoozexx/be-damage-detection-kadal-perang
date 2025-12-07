@@ -89,14 +89,14 @@
   },
   {
     "code": "P0171",
-    "summary": "Kode P0171 menunjukkan kondisi campuran bahan bakar terlalu kurus (lean) pada bank 1. Pada Suzuki Carry 2020, kemungkinan penyebab: 1) Kebocoran vakum pada intake manifold atau selang vakum, 2) Sensor MAF/MAP kotor atau rusak, 3) Filter udara tersumbat, 4) Injektor bahan bakar tersumbat atau lemah, 5) Pompa bahan bakar lemah atau fuel pressure regulator bermasalah, 6) Sensor O2 rusak memberikan pembacaan salah, 7) Kebocoran pada sistem exhaust sebelum O2 sensor. Suhu mesin normal 94°C menunjukkan thermostat berfungsi baik. Perlu dilakukan pengecekan visual kebocoran vakum, scan data sensor MAF/O2, test tekanan bahan bakar, dan pembersihan/penggantian komponen yang bermasalah.",
-    "estimated_cost_idr": 1850000,
-    "estimated_cost_text": "Rp 200.000 - Rp 3.500.000",
-    "urgency": "Sedang - Kendaraan masih bisa digunakan namun konsumsi bahan bakar boros, performa menurun, dan dapat merusak catalytic converter jika dibiarkan lama. Sebaiknya diperbaiki dalam 1-2 minggu.",
+    "summary": "Kode DTC P0171 menunjukkan kondisi sistem bahan bakar terlalu kurus (lean) pada bank 1. Berdasarkan data sensor, O2 sensor menunjukkan pembacaan 0.15V (sangat rendah, mengindikasikan campuran lean). Kemungkinan penyebab: kebocoran vakum pada intake manifold, sensor MAF/MAP kotor atau rusak, injector tersumbat, tekanan bahan bakar rendah, atau kebocoran pada sistem intake setelah sensor MAF. TPS dan tegangan aki normal. Perlu dilakukan pemeriksaan menyeluruh pada sistem intake untuk kebocoran vakum, pembersihan atau penggantian sensor MAF/MAP, pengecekan tekanan fuel pump, dan inspeksi injector.",
+    "estimated_cost_idr": 2000000,
+    "estimated_cost_text": "Rp 500.000 - Rp 3.500.000",
+    "urgency": "Sedang",
     "sources": [
       "kolosal"
     ],
-    "created_at": "2025-12-06T17:56:42.073251Z"
+    "created_at": "2025-12-07T09:39:44.577951Z"
   },
   {
     "code": "P0420",

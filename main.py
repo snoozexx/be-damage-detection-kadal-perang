@@ -78,7 +78,7 @@ def _compute_status(
 @app.on_event("startup")
 async def startup():
     await database.connect()
-    # run_migrations()
+    run_migrations()
 
 @app.on_event("shutdown")
 async def shutdown():
