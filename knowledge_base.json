@@ -1,0 +1,123 @@
+[
+  {
+    "code": "P0128",
+    "summary": "Kode DTC P0128 menunjukkan suhu mesin di bawah temperatur kerja normal (thermostat). Suhu mesin Anda hanya 62°C, padahal seharusnya mencapai 85-95°C. Kemungkinan besar thermostat macet dalam posisi terbuka atau rusak, sehingga coolant terus mengalir ke radiator dan mesin tidak bisa mencapai suhu optimal. Bisa juga sensor suhu coolant (ECT sensor) yang bermasalah. Perlu dilakukan pengecekan thermostat, sensor ECT, dan sistem pendingin. Jika dibiarkan, konsumsi bahan bakar akan boros, performa mesin menurun, emisi gas buang meningkat, dan komponen mesin cepat aus karena pelumasan tidak optimal.",
+    "estimated_cost_idr": 525000,
+    "estimated_cost_text": "Rp 250.000 - Rp 800.000",
+    "urgency": "Sedang - Kendaraan masih bisa digunakan namun sebaiknya segera diperbaiki dalam 1-2 minggu untuk menghindari kerusakan lebih lanjut dan pemborosan bahan bakar",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:55:07.415725Z"
+  },
+  {
+    "code": "P0113",
+    "summary": "Kode DTC P0113 menunjukkan masalah pada Intake Air Temperature (IAT) Sensor Circuit High Input. Sensor suhu udara masuk mengirim sinyal voltase yang terlalu tinggi ke ECU, yang mengindikasikan pembacaan suhu udara yang sangat rendah (tidak wajar). Kemungkinan penyebab: 1) Sensor IAT rusak/short circuit, 2) Kabel sensor putus atau korsleting, 3) Konektor sensor kotor/korosi, 4) Masalah pada ECU (jarang terjadi). Gejala yang mungkin muncul: konsumsi bahan bakar boros, mesin susah hidup saat dingin, idle tidak stabil, dan performa mesin menurun. Untuk Suzuki Carry 2020, sensor IAT biasanya terintegrasi dengan MAF sensor atau terpisah di intake manifold. Perlu dilakukan pengecekan visual kabel dan konektor, pengukuran resistansi sensor, dan scan ulang setelah perbaikan.",
+    "estimated_cost_idr": 525000,
+    "estimated_cost_text": "Rp 250.000 - Rp 800.000",
+    "urgency": "Sedang - Kendaraan masih bisa digunakan namun sebaiknya segera diperbaiki dalam 1-2 minggu untuk menghindari konsumsi BBM boros dan kerusakan lebih lanjut. Jika hanya pembersihan konektor mungkin biaya minimal, namun jika perlu ganti sensor IAT biaya maksimal.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:55:21.020868Z"
+  },
+  {
+    "code": "P0700",
+    "summary": "Kode P0700 menunjukkan adanya masalah pada sistem transmisi otomatis (Transmission Control System Malfunction). Kode ini adalah kode generik yang mengindikasikan TCM (Transmission Control Module) mendeteksi kesalahan dan menyimpan kode trouble lainnya. Perlu dilakukan scan lebih lanjut untuk membaca kode spesifik transmisi. Suhu mesin 113°C masih dalam batas normal operasi. Kemungkinan masalah: sensor transmisi rusak, solenoid transmisi bermasalah, wiring harness putus/korosi, TCM bermasalah, atau oli transmisi kotor/kurang. Suzuki Carry 2020 umumnya menggunakan transmisi manual, jika unit Anda AT perlu pengecekan menyeluruh sistem transmisi.",
+    "estimated_cost_idr": 2650000,
+    "estimated_cost_text": "Rp 300.000 - Rp 5.000.000",
+    "urgency": "Sedang - Segera periksa ke bengkel dalam 1-2 hari. Hindari penggunaan berat dan perjalanan jauh. Jika transmisi mulai slip, tersendat, atau tidak bisa pindah gigi, hentikan kendaraan dan derek ke bengkel.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:55:29.276180Z"
+  },
+  {
+    "code": "P0135",
+    "summary": "Kode DTC P0135 menunjukkan kerusakan pada sirkuit pemanas sensor oksigen (O2 sensor heater circuit) bank 1 sensor 1. Sensor ini terletak sebelum catalytic converter. Meskipun suhu mesin normal (90°C), pemanas sensor O2 tidak berfungsi dengan baik. Ini dapat menyebabkan konsumsi bahan bakar meningkat, emisi gas buang tidak optimal, dan performa mesin menurun saat kondisi dingin. Perlu dilakukan pengecekan pada sensor O2, kabel dan konektor, serta sistem kelistrikan terkait. Kemungkinan besar sensor O2 perlu diganti.",
+    "estimated_cost_idr": 825000,
+    "estimated_cost_text": "Rp 450.000 - Rp 1.200.000",
+    "urgency": "Sedang - Kendaraan masih bisa digunakan namun sebaiknya segera diperbaiki dalam 1-2 minggu untuk menghindari konsumsi BBM boros dan kerusakan komponen lain seperti catalytic converter. Jangan ditunda terlalu lama karena dapat mempengaruhi efisiensi mesin dan emisi.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:55:39.740337Z"
+  },
+  {
+    "code": "P0440",
+    "summary": "Kode P0440 menunjukkan masalah pada sistem EVAP (Evaporative Emission Control System). Ini berarti ada kebocoran atau malfungsi pada sistem penguapan bahan bakar yang mencegah uap bensin masuk ke atmosfer. Kemungkinan penyebab: tutup tangki bensin tidak rapat/rusak, selang EVAP retak atau longgar, canister charcoal rusak, atau purge valve/vent valve macet. Suhu mesin normal 89°C menunjukkan mesin bekerja baik, namun sistem EVAP perlu diperiksa. Gejala mungkin tidak terasa saat berkendara, tapi lampu check engine akan menyala dan kendaraan tidak akan lulus uji emisi.",
+    "estimated_cost_idr": 1275000,
+    "estimated_cost_text": "Rp 50.000 - Rp 2.500.000",
+    "urgency": "Sedang - Tidak mempengaruhi performa mesin secara langsung, namun sebaiknya diperbaiki dalam 1-2 minggu. Mulai dari pengecekan tutup tangki (gratis/murah) hingga penggantian komponen EVAP jika diperlukan. Bisa menyebabkan konsumsi BBM sedikit boros dan polusi udara meningkat.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:55:52.209145Z"
+  },
+  {
+    "code": "P0500",
+    "summary": "Kode DTC P0500 menunjukkan masalah pada Vehicle Speed Sensor (VSS) atau sensor kecepatan kendaraan. Sensor ini tidak mengirimkan sinyal ke ECU. Kemungkinan penyebab: sensor VSS rusak/kotor, kabel atau konektor VSS putus/korosi, gear speedometer aus, atau masalah pada ECU. Gejala yang mungkin muncul: speedometer tidak berfungsi, transmisi tidak berpindah gigi dengan normal (jika otomatis), konsumsi bahan bakar meningkat, dan cruise control tidak bekerja. Perlu dilakukan pengecekan visual kabel dan konektor VSS, pengukuran voltase sensor, dan inspeksi gear speedometer di transmisi.",
+    "estimated_cost_idr": 475000,
+    "estimated_cost_text": "Rp 150.000 - Rp 800.000",
+    "urgency": "Sedang - Kendaraan masih bisa digunakan namun sebaiknya segera diperbaiki dalam 1-2 minggu. Speedometer tidak akurat dapat mempengaruhi keselamatan berkendara dan berpotensi melanggar aturan lalu lintas. Jika dibiarkan, dapat menyebabkan masalah pada transmisi dan konsumsi bahan bakar yang tidak efisien.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:56:02.143681Z"
+  },
+  {
+    "code": "P0201",
+    "summary": "Kode DTC P0201 menunjukkan masalah pada sirkuit injektor silinder 1. Kemungkinan penyebab: injektor macet/rusak, kabel atau konektor injektor korosi/putus, atau masalah pada ECM. Gejala yang mungkin muncul: mesin tersendat, idle kasar, konsumsi bahan bakar meningkat, dan performa menurun. Perlu dilakukan pengecekan resistansi injektor (normalnya 12-16 ohm), inspeksi kabel dan konektor, serta tes sinyal dari ECM. Suhu mesin 97°C masih dalam batas normal operasi.",
+    "estimated_cost_idr": 825000,
+    "estimated_cost_text": "Rp 150.000 - Rp 1.500.000",
+    "urgency": "Sedang - Kendaraan masih bisa digunakan namun sebaiknya segera diperbaiki dalam 1-2 minggu untuk mencegah kerusakan lebih lanjut dan konsumsi bahan bakar berlebih. Jika mesin mulai tersendat parah atau sulit hidup, segera ke bengkel.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:56:14.350760Z"
+  },
+  {
+    "code": "P0300",
+    "summary": "Kode P0300 menunjukkan misfire acak pada mesin (Random/Multiple Cylinder Misfire Detected). Pada Suzuki Carry 2020, ini bisa disebabkan oleh busi aus/kotor, kabel busi rusak, koil pengapian lemah, injector kotor/tersumbat, kompresi mesin rendah, atau masalah pada sistem bahan bakar. Suhu mesin 96°C masih normal. Perlu dilakukan pengecekan busi, kabel busi, koil pengapian, dan sistem injeksi. Jika dibiarkan dapat menyebabkan kerusakan katalitik konverter, konsumsi bahan bakar boros, dan kerusakan mesin lebih parah.",
+    "estimated_cost_idr": 1400000,
+    "estimated_cost_text": "Rp 300.000 - Rp 2.500.000",
+    "urgency": "Tinggi - Segera perbaiki dalam 1-3 hari. Hindari penggunaan kendaraan untuk jarak jauh atau beban berat sampai diperbaiki untuk mencegah kerusakan lebih lanjut pada mesin dan katalitik konverter.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:56:24.539521Z"
+  },
+  {
+    "code": "P0171",
+    "summary": "Kode P0171 menunjukkan kondisi campuran bahan bakar terlalu kurus (lean) pada bank 1. Pada Suzuki Carry 2020, kemungkinan penyebab: 1) Kebocoran vakum pada intake manifold atau selang vakum, 2) Sensor MAF/MAP kotor atau rusak, 3) Filter udara tersumbat, 4) Injektor bahan bakar tersumbat atau lemah, 5) Pompa bahan bakar lemah atau fuel pressure regulator bermasalah, 6) Sensor O2 rusak memberikan pembacaan salah, 7) Kebocoran pada sistem exhaust sebelum O2 sensor. Suhu mesin normal 94°C menunjukkan thermostat berfungsi baik. Perlu dilakukan pengecekan visual kebocoran vakum, scan data sensor MAF/O2, test tekanan bahan bakar, dan pembersihan/penggantian komponen yang bermasalah.",
+    "estimated_cost_idr": 1850000,
+    "estimated_cost_text": "Rp 200.000 - Rp 3.500.000",
+    "urgency": "Sedang - Kendaraan masih bisa digunakan namun konsumsi bahan bakar boros, performa menurun, dan dapat merusak catalytic converter jika dibiarkan lama. Sebaiknya diperbaiki dalam 1-2 minggu.",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:56:42.073251Z"
+  },
+  {
+    "code": "P0420",
+    "summary": "Kode P0420 menunjukkan efisiensi catalytic converter di bawah ambang batas. Pada Suzuki Carry 2020, ini biasanya disebabkan oleh catalytic converter yang sudah lemah/rusak, sensor O2 yang aus, atau kebocoran exhaust. Suhu mesin normal (93°C) menunjukkan tidak ada masalah overheating. Perlu dilakukan pengecekan sensor O2 (upstream dan downstream), inspeksi catalytic converter, dan pemeriksaan sistem exhaust untuk kebocoran. Jika catalytic converter rusak, perlu penggantian. Kendaraan masih bisa digunakan namun konsumsi bahan bakar bisa meningkat dan emisi gas buang tidak optimal.",
+    "estimated_cost_idr": 2650000,
+    "estimated_cost_text": "Rp 800.000 - Rp 4.500.000",
+    "urgency": "Sedang - kendaraan masih bisa digunakan namun sebaiknya diperbaiki dalam 1-2 minggu untuk menghindari kerusakan lebih lanjut dan memastikan emisi sesuai standar. Biaya tergantung apakah hanya perlu ganti sensor O2 (Rp 800rb-1,5jt) atau perlu ganti catalytic converter (Rp 3jt-4,5jt)",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-06T17:56:56.458521Z"
+  },
+  {
+    "code": "P0118",
+    "summary": "Kode DTC P0118 menunjukkan masalah pada sensor suhu coolant (ECT - Engine Coolant Temperature Sensor) dengan sinyal tegangan terlalu tinggi. Suhu mesin terbaca 115°C yang sangat tinggi dan tidak normal, kemungkinan sensor ECT rusak atau terjadi short circuit pada kabel sensor. Kondisi ini menyebabkan ECU menerima data suhu yang salah, sehingga dapat mengakibatkan campuran bahan bakar tidak optimal, konsumsi BBM boros, dan potensi overheating mesin. Sensor O2 menunjukkan 0.15V (lean condition) yang mengindikasikan campuran terlalu kurus akibat ECU salah membaca suhu mesin. Perlu segera dilakukan pengecekan dan penggantian sensor ECT serta inspeksi sistem pendingin untuk mencegah kerusakan mesin lebih lanjut.",
+    "estimated_cost_idr": 425000,
+    "estimated_cost_text": "Rp 250.000 - Rp 600.000",
+    "urgency": "Tinggi",
+    "sources": [
+      "kolosal"
+    ],
+    "created_at": "2025-12-07T00:57:34.078823Z"
+  }
+]

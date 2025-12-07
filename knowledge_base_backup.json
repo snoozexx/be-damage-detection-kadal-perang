@@ -1,0 +1,20 @@
+[
+  {
+    "error_code": "P0171",
+    "title": "System Too Lean (Campuran Bahan Bakar Terlalu Kurus)",
+    "description": "Terlalu banyak udara atau kurang bahan bakar dalam mesin. Tenaga akan terasa kempos.",
+    "causes": ["Selang vakum bocor", "Sensor MAF kotor", "Pompa bensin lemah"],
+    "fix_steps": "1. Cek selang udara di sekitar intake, dengarkan suara mendesis. 2. Bersihkan sensor MAF dengan cairan cleaner.",
+    "estimated_cost_idr": "Rp 50.000 - Rp 300.000 (Tergantung ganti selang atau sensor)",
+    "urgency": "Medium - Bisa jalan tapi boros bensin."
+  },
+  {
+    "error_code": "P0300",
+    "title": "Random/Multiple Cylinder Misfire (Pincang)",
+    "description": "Pembakaran tidak terjadi di satu atau lebih silinder. Mesin bergetar hebat.",
+    "causes": ["Busi mati", "Koil bocor", "Injektor mampet"],
+    "fix_steps": "1. Cek kondisi fisik busi. 2. Tukar posisi koil (swapping) untuk tes kerusakan.",
+    "estimated_cost_idr": "Rp 150.000 (Ganti Busi) - Rp 450.000 (Ganti Koil)",
+    "urgency": "High - Jangan dipaksa jalan jauh, katalis bisa rusak."
+  }
+]

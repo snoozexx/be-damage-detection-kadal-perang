@@ -1,0 +1,122 @@
+openapi: 3.0.3
+info:
+  title: OtoSense API
+  description: Backend IoT + AI untuk pemeliharaan armada UMKM.
+  version: 0.1.0
+servers:
+  - url: http://localhost:8000
+paths:
+  /api/telemetry:
+    post:
+      tags: [Telemetry]
+      summary: Kirim telemetry kendaraan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TelemetryIn'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryOut'
+        '422':
+          description: Validation error
+  /api/status/{vehicle_id}:
+    get:
+      tags: [Telemetry]
+      summary: Ambil status terakhir kendaraan
+      parameters:
+        - name: vehicle_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TelemetryOut'
+        '404':
+          description: Vehicle not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+components:
+  schemas:
+    TelemetryIn:
+      type: object
+      required: [vehicle_id, timestamp, rpm, speed, temp]
+      properties:
+        vehicle_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        rpm:
+          type: integer
+          minimum: 0
+        speed:
+          type: integer
+          minimum: 0
+        temp:
+          type: integer
+        dtc_code:
+          type: string
+          nullable: true
+        vehicle_model:
+          type: string
+          nullable: true
+    AIAdvice:
+      type: object
+      properties:
+        summary:
+          type: string
+        estimated_cost_idr:
+          type: integer
+          nullable: true
+        estimated_cost_text:
+          type: string
+          nullable: true
+        urgency:
+          type: string
+          nullable: true
+        sources:
+          type: array
+          items:
+            type: string
+          nullable: true
+    TelemetryOut:
+      allOf:
+        - $ref: '#/components/schemas/TelemetryIn'
+        - type: object
+          properties:
+            status:
+              type: array
+              items:
+                type: string
+            ai_advice:
+              $ref: '#/components/schemas/AIAdvice'
