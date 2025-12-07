@@ -20,7 +20,7 @@ def upgrade() -> None:
     with op.batch_alter_table('telemetry', schema=None) as batch_op:
         batch_op.alter_column('ai_advice',
                               existing_type=sa.VARCHAR(),
-                              type_=postgresql.JSON(astext=True), # Menggunakan postgresql.JSON dengan astext=True disarankan
+                             type_=postgresql.JSON(), # Menggunakan postgresql.JSON dengan astext=True disarankan
                               existing_nullable=True,
                               # 👇 PERBAIKAN: Tambahkan instruksi USING untuk konversi data
                               # Konversi dari VARCHAR/TEXT ke JSON secara eksplisit
