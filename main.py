@@ -263,10 +263,27 @@ async def ingest_telemetry_db(payload: TelemetryIn):
 
 @app.get("/api/status/{vehicle_id}", response_model=TelemetryOut, tags=["Telemetry"])
 async def get_status(vehicle_id: str):
-    record = vehicle_store.get(vehicle_id)
+    query = (
+        select(TelemetryRecord)
+        .where(TelemetryRecord.vehicle_id == vehicle_id)
+        .order_by(TelemetryRecord.timestamp.desc())
+        .limit(1)
+    )
+    record = await database.fetch_one(query)
+
     if not record:
         raise HTTPException(status_code=404, detail="Vehicle not found")
-    return jsonable_encoder(record)
+
+    record_dict = dict(record)
+
+    if "speed" not in record_dict:
+        record_dict["speed"] = 0.0  
+    if "ai_advice" not in record_dict:
+        record_dict["ai_advice"] = None
+    if "status" not in record_dict:
+        record_dict["status"] = ["NORMAL"]
+
+    return jsonable_encoder(record_dict)
 
 @app.get("/api/vehicles", tags=["Telemetry"])
 async def list_vehicles():
