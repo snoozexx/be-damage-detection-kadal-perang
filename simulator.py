@@ -14,6 +14,14 @@ def now_iso():
 
 
 def build_payload(scenario: int):
+    default_telemetry = {
+        "tps_percent": 0.0,
+        "batt_volt": 14.0,
+        "fuel_trim_short": 0.0,
+        "o2_volt": 0.5,
+        "map_kpa": 40,
+    }
+
     if scenario == 1:
         return {
             "vehicle_id": "TEST-001",
@@ -23,7 +31,9 @@ def build_payload(scenario: int):
             "temp": 90,
             "dtc_code": None,
             "vehicle_model": "Toyota Avanza",
+            **default_telemetry
         }
+    
     if scenario == 2:
         return {
             "vehicle_id": "TEST-002",
@@ -33,17 +43,25 @@ def build_payload(scenario: int):
             "temp": 95,
             "dtc_code": None,
             "vehicle_model": "Toyota Avanza",
+            **default_telemetry
         }
+    
     if scenario == 3:
         return {
-            "vehicle_id": "TEST-003",
+            "vehicle_id": "ARMADA-002-CIB",
             "timestamp": now_iso(),
-            "rpm": 2000,
-            "speed": 50,
-            "temp": 105,
-            "dtc_code": "P0300",
-            "vehicle_model": "Toyota Avanza",
+            "rpm": 1200,
+            "speed": 0,
+            "temp": 115,
+            "dtc_code": "P0118",
+            "vehicle_model": "Yamaha NMAX 155",
+            "tps_percent": 0.5,
+            "batt_volt": 12.1,
+            "fuel_trim_short": -20.5,
+            "o2_volt": 0.15,
+            "map_kpa": 100,
         }
+    
     raise ValueError("Skenario tidak valid")
 
 
@@ -56,9 +74,9 @@ def send(payload):
 
 def interactive_choose():
     print("Pilih skenario:")
-    print("[1] Normal")
-    print("[2] Warning (RPM Tinggi)")
-    print("[3] Critical (Overheat + DTC P0300)")
+    print("[1] Normal (RPM 3000, Temp 90)")
+    print("[2] Warning (RPM 6500)")
+    print("[3] Critical (Overheat 115C, DTC P0118, NMAX Anomali)")
     choice = input("Masukkan pilihan [1/2/3]: ").strip()
     if choice not in {"1", "2", "3"}:
         print("Pilihan tidak valid")
@@ -71,14 +89,18 @@ def main():
     parser.add_argument("--scenario", type=int, choices=[1, 2, 3])
     args = parser.parse_args()
     scenario = args.scenario or interactive_choose()
-    payload = build_payload(scenario)
+    
+    payload = build_payload(scenario) 
+    
     try:
         result = send(payload)
     except requests.RequestException as e:
-        print(f"Gagal mengirim: {e}")
+        print(f"Gagal mengirim ke {BASE_URL}: {e}")
         sys.exit(1)
+        
     print("Response:")
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    
     if result.get("ai_advice"):
         advice = result["ai_advice"]
         print("\nDiagnosa AI:")
@@ -89,4 +111,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

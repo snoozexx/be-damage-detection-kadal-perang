@@ -4,3 +4,8 @@ pydantic
 python-dotenv
 openai
 requests
+sqlalchemy
+asyncpg
+databases
+psycopg2-binary
+alembic

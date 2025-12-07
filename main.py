@@ -1,6 +1,8 @@
 from typing import Any, Dict
 import os
-
+import json
+from datetime import datetime
+from sqlalchemy.sql import select
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -10,7 +12,7 @@ except Exception:
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
-
+from database import database, TelemetryRecord, create_db_and_tables
 from models import TelemetryIn, TelemetryOut
 from services.ai_service import analyze_damage
 
@@ -72,6 +74,15 @@ def _compute_status(
         return ["NORMAL"]
     return statuses
 
+@app.on_event("startup")
+async def startup():
+    create_db_and_tables()
+    await database.connect()
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
 
 @app.post("/api/telemetry", response_model=TelemetryOut, tags=["Telemetry"])
 async def ingest_telemetry(payload: TelemetryIn):
@@ -127,6 +138,87 @@ async def ingest_telemetry(payload: TelemetryIn):
 
     return encoded
 
+@app.post("/api/telemetry/db", response_model=TelemetryOut, tags=["Telemetry"])
+async def ingest_telemetry_db(payload: TelemetryIn):
+    statuses = _compute_status(
+        payload.rpm, 
+        payload.temp, 
+        payload.dtc_code,
+        payload.tps_percent,
+        payload.batt_volt,
+        payload.fuel_trim_short
+    )
+
+    record = payload.dict(exclude_none=True)
+    record["timestamp"] = payload.timestamp.isoformat()
+    record["status"] = statuses
+
+    ai_result = None
+    if ("CRITICAL" in statuses) or payload.dtc_code:
+        ai_result = analyze_damage(
+            payload.dtc_code,
+            payload.temp,
+            payload.vehicle_model,
+            payload.tps_percent, 
+            payload.batt_volt, 
+            payload.o2_volt, 
+            payload.map_kpa
+        )
+
+    ai_advice_dict = None
+    if ai_result:
+        if isinstance(ai_result, str):
+            try:
+                ai_advice_dict = json.loads(ai_result)
+            except:
+                ai_advice_dict = {"raw": ai_result}
+        else:
+            ai_advice_dict = ai_result
+
+    record["ai_advice"] = ai_advice_dict  
+
+    db_data = {
+        "vehicle_id": payload.vehicle_id,
+        "timestamp": payload.timestamp.replace(tzinfo=None),
+        "rpm": payload.rpm,
+        "temp": payload.temp,
+        "dtc_code": payload.dtc_code,
+        "tps_percent": payload.tps_percent,
+        "batt_volt": payload.batt_volt,
+        "fuel_trim_short": payload.fuel_trim_short,
+        "o2_volt": payload.o2_volt,
+        "map_kpa": payload.map_kpa,
+        "vehicle_model": payload.vehicle_model,
+        "status": statuses,
+        "ai_advice": ai_advice_dict,    
+    }
+
+    query = TelemetryRecord.__table__.insert()
+    await database.execute(query, db_data)
+
+    vehicle_store[payload.vehicle_id] = record
+    encoded = jsonable_encoder(record)
+
+    if payload.vehicle_id in ws_by_vehicle:
+        dead_ws = []
+        for ws in ws_by_vehicle[payload.vehicle_id]:
+            try:
+                await ws.send_json(encoded)
+            except:
+                dead_ws.append(ws)
+        for ws in dead_ws:
+            ws_by_vehicle[payload.vehicle_id].remove(ws)
+
+    dead_ws = []
+    for ws in ws_global:
+        try:
+            await ws.send_json(encoded)
+        except:
+            dead_ws.append(ws)
+    for ws in dead_ws:
+        ws_global.remove(ws)
+
+    return encoded
 
 @app.get("/api/status/{vehicle_id}", response_model=TelemetryOut, tags=["Telemetry"])
 async def get_status(vehicle_id: str):
@@ -139,6 +231,20 @@ async def get_status(vehicle_id: str):
 async def list_vehicles():
     """Mengembalikan daftar semua ID kendaraan yang aktif di vehicle_store."""
     return list(vehicle_store.keys())
+
+# main.py
+
+@app.get("/api/vehicles/db", tags=["Telemetry"])
+async def list_db_vehicles():
+    """Mengembalikan daftar semua ID kendaraan unik dari database."""
+    
+    query = select(TelemetryRecord.vehicle_id.distinct())
+    
+    results = await database.fetch_all(query)
+    
+    vehicle_ids = [r['vehicle_id'] for r in results]
+    
+    return vehicle_ids
 
 
 @app.get("/health")

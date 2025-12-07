@@ -78,14 +78,14 @@
   },
   {
     "code": "P0300",
-    "summary": "Kode P0300 menunjukkan misfire acak pada mesin (Random/Multiple Cylinder Misfire Detected). Pada Suzuki Carry 2020, ini bisa disebabkan oleh busi aus/kotor, kabel busi rusak, koil pengapian lemah, injector kotor/tersumbat, kompresi mesin rendah, atau masalah pada sistem bahan bakar. Suhu mesin 96°C masih normal. Perlu dilakukan pengecekan busi, kabel busi, koil pengapian, dan sistem injeksi. Jika dibiarkan dapat menyebabkan kerusakan katalitik konverter, konsumsi bahan bakar boros, dan kerusakan mesin lebih parah.",
-    "estimated_cost_idr": 1400000,
-    "estimated_cost_text": "Rp 300.000 - Rp 2.500.000",
-    "urgency": "Tinggi - Segera perbaiki dalam 1-3 hari. Hindari penggunaan kendaraan untuk jarak jauh atau beban berat sampai diperbaiki untuk mencegah kerusakan lebih lanjut pada mesin dan katalitik konverter.",
+    "summary": "Kendaraan mengalami misfire pada semua silinder (P0300) dengan kondisi kritis pada sistem kelistrikan. Tegangan aki sangat rendah (10.9V, seharusnya 12.6V+) yang menyebabkan pengapian lemah. TPS tidak terbaca menunjukkan masalah sensor atau koneksi. O2 sensor menunjukkan campuran kaya (0.7V). MAP sensor normal (35 kPa idle). Prioritas utama: perbaiki sistem charging (aki/alternator), periksa koneksi TPS, dan diagnosa sistem pengapian (busi, koil, kabel). Misfire kemungkinan disebabkan oleh tegangan listrik tidak stabil yang mempengaruhi performa koil pengapian.",
+    "estimated_cost_idr": 1650000,
+    "estimated_cost_text": "Rp 800.000 - Rp 2.500.000",
+    "urgency": "Tinggi",
     "sources": [
       "kolosal"
     ],
-    "created_at": "2025-12-06T17:56:24.539521Z"
+    "created_at": "2025-12-07T04:42:16.103936Z"
   },
   {
     "code": "P0171",
