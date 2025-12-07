@@ -1,11 +1,25 @@
 from __future__ import with_statement
 import os
 from logging.config import fileConfig
+import sys
+from pathlib import Path
+
+# Ensure project root is on sys.path so "app" package can be imported by Alembic/linters
+project_root = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(project_root))
 
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 
-from models import BaseModel
+try:
+    from app.models.base import Base
+except (ImportError, ModuleNotFoundError):
+    try:
+        from models.base import Base
+    except (ImportError, ModuleNotFoundError):
+        from sqlalchemy.orm import DeclarativeBase
+        class Base(DeclarativeBase):
+            pass
 
 config = context.config
 
@@ -13,7 +27,7 @@ fileConfig(config.config_file_name)
 
 config.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"])
 
-target_metadata = BaseModel.metadata
+target_metadata = Base.metadata
 
 
 def run_migrations_offline():
