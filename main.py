@@ -12,9 +12,10 @@ except Exception:
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
-from database import database, TelemetryRecord, create_db_and_tables
+from database import database, TelemetryRecord
 from models import TelemetryIn, TelemetryOut
 from services.ai_service import analyze_damage
+from utils.auto_migrate import run_migrations
 
 
 app = FastAPI(
@@ -76,8 +77,8 @@ def _compute_status(
 
 @app.on_event("startup")
 async def startup():
-    create_db_and_tables()
     await database.connect()
+    run_migrations()
 
 @app.on_event("shutdown")
 async def shutdown():
